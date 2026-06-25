@@ -43,6 +43,8 @@ class Day8{
         System.out.println("Input matrix");
         
         printMatrix(matrix, r, c);
+
+        //question 1 : write a program to display transpose matrix entered by the user
         System.out.println("Transpose matrix is : ");
         int ans[][] = transposeMatrix(matrix, c, r);
         printMatrix(ans, c, r);
