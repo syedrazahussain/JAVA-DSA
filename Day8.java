@@ -47,19 +47,40 @@ class Day8 {
             mat[i][0] = 1;
             mat[i][i] = 1;
 
-            for (int j = 1; j < i ; j++) {
+            for (int j = 1; j < i; j++) {
 
                 mat[i][j] = mat[i - 1][j] + mat[i - 1][j - 1];
-                
-               
+
             }
-            
-            
+
         }
-       
+
         printMatrix(mat, n, n);
 
         return;
+    }
+
+    static int[][] rotatematrix(int matrix[][], int r, int c) {
+        matrix = transposeMatrix(matrix, c, r);
+        
+        for (int i = 0; i < r; i++) {
+
+            int left = 0;
+            int right = c - 1;
+
+            while (left < right) {
+
+                int temp = matrix[i][left];
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
+                left++;
+                right--;
+
+            }
+        }
+        
+
+        return matrix;
     }
 
     public static void main(String[] args) {
@@ -71,12 +92,12 @@ class Day8 {
         int matrix[][] = new int[r][c];
         System.out.println("Enter matrix " + r * c + " Elements : ");
         for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
+            for (int j = 0; j < c; j++) {
 
-        matrix[i][j] = sc.nextInt();
+                matrix[i][j] = sc.nextInt();
 
-        }
-        System.out.println(" ");
+            }
+            System.out.println(" ");
         }
         System.out.println("Input matrix");
 
@@ -111,7 +132,13 @@ class Day8 {
         // 3 1 3 3 1 //4
 
         // 4 1 4 6 4 1
+
         pascalsTraingle();
+
+        // question 4 : rotate the matrix in 90'c degree inb clockwise
+        int matrix1[][] = rotatematrix(matrix, r, c);
+        System.out.println("Rotated matrix is : ");
+        printMatrix(matrix1, r, c);
 
     }
 }
